@@ -1,0 +1,14 @@
+{
+    "app_name": "QR-Code",
+    "about_title": "About",
+    "about_text_1": "A QR-Code application that can be used to scan and create QR-codes.",
+    "about_text_2": "If you like my work, please consider buying me a coffee.",
+    "about_text_3": "Created by:",
+    "button_text_buy_coffee": "Buy Coffee",
+    "button_text_close": "Close",
+    "settings_title": "QR-Code Settings",
+    "select_theme_subtitle": "Select your theme:",
+    "theme_ui": "UI-mode",
+    "theme_dark": "Dark-mode",
+    "theme_light": "Light-mode"
+}
