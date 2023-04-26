@@ -5,6 +5,7 @@ class MyThemes {
     brightness: Brightness.light,
     primarySwatch: Colors.amber,
     focusColor: Colors.black,
+    indicatorColor: Colors.black,
     scaffoldBackgroundColor: Colors.white,
     textTheme: const TextTheme(
       headline6: TextStyle(
@@ -32,6 +33,7 @@ class MyThemes {
     brightness: Brightness.dark,
     primarySwatch: Colors.amber,
     focusColor: Colors.white,
+    indicatorColor: Colors.amber,
     scaffoldBackgroundColor: Colors.grey[900],
     textTheme: const TextTheme(
       headline6: TextStyle(
