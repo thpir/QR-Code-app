@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:localization/localization.dart';
+
+import '../screens/create_screen.dart';
+import '../screens/scan_screen.dart';
 
 class LandscapeHomeLayout extends StatelessWidget {
   const LandscapeHomeLayout({super.key});
@@ -14,7 +18,7 @@ class LandscapeHomeLayout extends StatelessWidget {
                     padding: const EdgeInsets.only(top: 30, left: 30, right: 15, bottom: 30),
                     child: InkWell(
                       onTap: () {
-                        
+                        Navigator.of(context).pushNamed(ScanScreen.routeName);
                       },
                       child: Card(
                         elevation: 10,
@@ -49,7 +53,7 @@ class LandscapeHomeLayout extends StatelessWidget {
                               ],
                             ),
                             Text(
-                              'Scan',
+                              'scan_button_text'.i18n(),
                               style: Theme.of(context).textTheme.headline6,
                               textAlign: TextAlign.center,
                             )
@@ -67,7 +71,7 @@ class LandscapeHomeLayout extends StatelessWidget {
                     padding: const EdgeInsets.only(top: 30, left: 15, right: 30, bottom: 30),
                     child: InkWell(
                       onTap: () {
-                        
+                        Navigator.of(context).pushNamed(CreateScreen.routeName);
                       },
                       child: Card(
                         elevation: 10,
@@ -102,7 +106,7 @@ class LandscapeHomeLayout extends StatelessWidget {
                               ],
                             ),
                             Text(
-                              'Create',
+                              'create_button_text'.i18n(),
                               style: Theme.of(context).textTheme.headline6,
                               textAlign: TextAlign.center,
                             )

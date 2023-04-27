@@ -9,6 +9,7 @@ import '../widgets/portrait_home_layout.dart';
 import '../widgets/landscape_home_layout.dart';
 
 class HomeScreen extends StatefulWidget {
+  static const routeName = '/home-screen';
   const HomeScreen({
     super.key,
     required this.title,
@@ -37,7 +38,6 @@ class _HomeScreenState extends State<HomeScreen> {
     final Orientation orientation = MediaQuery.of(context).orientation;
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
         title: Text('app_name'.i18n(),
             style: const TextStyle(
                 fontFamily: 'Roboto',

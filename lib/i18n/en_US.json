@@ -10,5 +10,13 @@
     "select_theme_subtitle": "Select your theme:",
     "theme_ui": "UI-mode",
     "theme_dark": "Dark-mode",
-    "theme_light": "Light-mode"
+    "theme_light": "Light-mode",
+    "scan_button_text": "scan",
+    "create_button_text": "create",
+    "appbar_create_text": "Create QR-Code", 
+    "appbar_scan_text": "QR-Code Scanner",
+    "appbar_result_text": "QR-Code Scan Result",
+    "textfield_url_text": "Enter your URL",
+    "generate_qr_code_button_text": "GENERATE QR CODE",
+    "no_qr_text": "Enter a link and tap the button to generate a QR-Code."
 }
