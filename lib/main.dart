@@ -6,10 +6,8 @@ import 'package:provider/provider.dart';
 import './theme/my_themes.dart';
 import './providers/ui_theme_provider.dart';
 import './screens/home_screen.dart';
-import './screens/create_screen.dart';
 import './screens/scan_screen.dart';
-import './screens/home_screen.dart';
-import './screens/result_screen.dart';
+//import './screens/result_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -76,8 +74,7 @@ class _MyAppState extends State<MyApp> {
           routes: {
             HomeScreen.routeName: (context) => HomeScreen(title: 'app_name'.i18n()),
             ScanScreen.routeName: (ctx) => const ScanScreen(),
-            CreateScreen.routeName: (ctx) => const CreateScreen(),
-            ResultScreen.routeName: (ctx) => const ResultScreen(),
+            //ResultScreen.routeName: (ctx) => const ResultScreen(result: '',),
           },
         ),
       ),

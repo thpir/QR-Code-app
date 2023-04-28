@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:localization/localization.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
@@ -23,18 +21,20 @@ class _ScanScreenState extends State<ScanScreen> {
     if (_isPaused) {
       return;
     }
-
     if (barcodes.isNotEmpty) {
       final Barcode firstBarcode = barcodes.first;
       debugPrint('Barcode found! ${firstBarcode.rawValue}');
       setState(() {
         _isPaused = true;
       });
-      Navigator.of(context)
-          .pushNamed(ResultScreen.routeName)
-          .then((_) => setState(() {
-                _isPaused = false;
-              }));
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) =>
+                ResultScreen(result: firstBarcode.rawValue.toString()),
+          )).then((_) => setState(() {
+            _isPaused = false;
+          }));
     }
   }
 
