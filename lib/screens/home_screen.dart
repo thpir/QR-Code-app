@@ -50,21 +50,50 @@ class _HomeScreenState extends State<HomeScreen> {
       final boundary =
           qrKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
       // We can increse the size of QR using pixel ratio
-      final image = await boundary.toImage(pixelRatio: 5.0); 
+      final image = await boundary.toImage(pixelRatio: 5.0);
       final byteData = await (image.toByteData(format: ui.ImageByteFormat.png));
+      DateTime now = DateTime.now();
+      int timeStamp = now.millisecondsSinceEpoch;
+
       if (byteData != null) {
         final pngBytes = byteData.buffer.asUint8List();
+
         // getting directory of our phone
-        final directory = (await getApplicationDocumentsDirectory()).path; 
+        final directory = (await getApplicationDocumentsDirectory()).path;
         final imgFile = File(
-          '$directory/${DateTime.now()}thpir_qr_generator.png',
+          '$directory/QR_$timeStamp.png',
         );
         imgFile.writeAsBytes(pngBytes);
-        GallerySaver.saveImage(imgFile.path).then((success) async {
-          //In here you can show snackbar or do something in the backend at successfull download
+        GallerySaver.saveImage(imgFile.path, albumName: 'QR-Code')
+            .then((success) async {
+          ScaffoldMessenger.of(context).showSnackBar(_showMessage());
+          controller.clear();
+        }).onError((error, stackTrace) {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(_showErrorMessage(error.toString()));
         });
       }
     }
+  }
+
+  SnackBar _showErrorMessage(String message) {
+    return SnackBar(
+      content: Text(
+        message + 'error_message_calibration'.i18n(),
+        style: const TextStyle(color: Colors.black),
+      ),
+      backgroundColor: Theme.of(context).errorColor,
+    );
+  }
+
+  SnackBar _showMessage() {
+    return SnackBar(
+      content: Text(
+        'confirm_message_saved'.i18n(),
+        style: Theme.of(context).textTheme.bodyText2,
+      ),
+      backgroundColor: Theme.of(context).primaryColor,
+    );
   }
 
   @override
@@ -205,6 +234,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     : () {
                         setState(() {
                           qrData = controller.text;
+                          FocusManager.instance.primaryFocus?.unfocus();
                         });
                       },
                 icon: const Icon(
@@ -235,58 +265,59 @@ class _HomeScreenState extends State<HomeScreen> {
                   width: 300,
                   height: 300,
                   alignment: Alignment.center,
-                  child: RepaintBoundary(
-                      key: qrKey,
-                      child: qrData == ''
-                          ? SizedBox(
-                              height: 250,
-                              width: 250,
-                              child: Center(
-                                child: Stack(
-                                  alignment: Alignment.center,
-                                  children: [
-                                    const Icon(
-                                      Icons.qr_code_2,
-                                      color: Colors.black26,
-                                      size: 250,
-                                    ),
-                                    Text(
-                                      'no_qr_text'.i18n(),
-                                      style:
-                                          Theme.of(context).textTheme.headline6,
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            )
-                          : Stack(
+                  child: qrData == ''
+                      ? SizedBox(
+                          height: 250,
+                          width: 250,
+                          child: Center(
+                            child: Stack(
                               alignment: Alignment.center,
                               children: [
-                                QrImage(
-                                  data: qrData,
-                                  // embeddedImage: TODO
-                                  // semanticsLabel: TODO
+                                const Icon(
+                                  Icons.qr_code_2,
+                                  color: Colors.black26,
                                   size: 250,
-                                  backgroundColor: Colors.white,
-                                  version: QrVersions.auto,
                                 ),
-                                Container(
-                                  constraints: const BoxConstraints.expand(),
-                                  alignment: Alignment.topRight,
-                                  child: IconButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          qrData = '';
-                                        });
-                                      },
-                                      icon: const Icon(
-                                        Icons.close,
-                                        color: Colors.red,
-                                      )),
-                                )
+                                Text(
+                                  'no_qr_text'.i18n(),
+                                  style: Theme.of(context).textTheme.headline6,
+                                  textAlign: TextAlign.center,
+                                ),
                               ],
-                            )),
+                            ),
+                          ),
+                        )
+                      : Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            RepaintBoundary(
+                              key: qrKey,
+                              child: QrImage(
+                                data: qrData,
+                                // embeddedImage: TODO
+                                // semanticsLabel: TODO
+                                size: 250,
+                                backgroundColor: Colors.white,
+                                version: QrVersions.auto,
+                              ),
+                            ),
+                            Container(
+                              constraints: const BoxConstraints.expand(),
+                              alignment: Alignment.topRight,
+                              child: IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    qrData = '';
+                                  });
+                                },
+                                icon: const Icon(
+                                  Icons.close,
+                                  color: Colors.red,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                 ),
               ),
             )

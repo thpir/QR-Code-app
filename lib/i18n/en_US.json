@@ -20,5 +20,6 @@
     "appbar_result_text": "QR-Code Scan Result",
     "textfield_url_text": "Enter your URL",
     "generate_qr_code_button_text": "GENERATE QR CODE",
-    "no_qr_text": "Enter a link and tap the button to generate a QR-Code."
+    "no_qr_text": "Enter a link and tap the button to generate a QR-Code.",
+    "confirm_message_saved": "QR-code saved successfully!"
 }
