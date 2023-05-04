@@ -5,9 +5,10 @@ import 'package:provider/provider.dart';
 
 import './theme/my_themes.dart';
 import './providers/ui_theme_provider.dart';
+import './providers/database_provider.dart';
 import './screens/home_screen.dart';
 import './screens/scan_screen.dart';
-//import './screens/result_screen.dart';
+import './screens/history_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -40,6 +41,9 @@ class _MyAppState extends State<MyApp> {
       providers: [
         ChangeNotifierProvider<UiThemeProvider>(
           create: (_) => UiThemeProvider(),
+        ),
+        ChangeNotifierProvider<DatabaseProvider>(
+          create: (_) => DatabaseProvider(),
         ),
       ],
       child: Consumer<UiThemeProvider>(
@@ -74,7 +78,7 @@ class _MyAppState extends State<MyApp> {
           routes: {
             HomeScreen.routeName: (context) => HomeScreen(title: 'app_name'.i18n()),
             ScanScreen.routeName: (ctx) => const ScanScreen(),
-            //ResultScreen.routeName: (ctx) => const ResultScreen(result: '',),
+            HistoryScreen.routeName: (ctx) => const HistoryScreen(),
           },
         ),
       ),

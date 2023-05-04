@@ -13,6 +13,7 @@ import 'package:path_provider/path_provider.dart';
 import '../widgets/custom_drawer.dart';
 import '../widgets/custom_about_dialog.dart';
 import '../screens/scan_screen.dart';
+import '../screens/history_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   static const routeName = '/home-screen';
@@ -124,6 +125,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 fontWeight: FontWeight.bold,
                 fontSize: 20)),
         actions: <Widget>[
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).pushNamed(HistoryScreen.routeName);
+            },
+            icon: const Icon(
+              Icons.history_sharp,
+            ),
+          ),
           IconButton(
             onPressed: _showAboutDialog,
             icon: const Icon(Icons.info_outline),
