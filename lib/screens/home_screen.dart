@@ -12,7 +12,9 @@ import 'package:path_provider/path_provider.dart';
 
 import '../widgets/custom_drawer.dart';
 import '../widgets/custom_about_dialog.dart';
-import '../screens/scan_screen.dart';
+import '../widgets/scan_widget.dart';
+import '../widgets/title_widget.dart';
+import '../widgets/qr_placeholder_widget.dart';
 import '../screens/history_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -143,88 +145,8 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Expanded(
-                    child: Divider(
-                      thickness: 1,
-                      color: Theme.of(context).focusColor,
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    'scan_divider_text'.i18n(),
-                    style: Theme.of(context).textTheme.headline6,
-                    textAlign: TextAlign.start,
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Expanded(
-                    child: Divider(
-                      thickness: 1,
-                      color: Theme.of(context).focusColor,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-              child: ElevatedButton.icon(
-                onPressed: () {
-                  Navigator.of(context).pushNamed(ScanScreen.routeName);
-                },
-                icon: const Icon(
-                  Icons.qr_code_scanner,
-                  color: Colors.black,
-                ),
-                label: Text(
-                  'scan_button_text'.i18n(),
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontFamily: 'Roboto',
-                    fontSize: 16,
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Expanded(
-                    child: Divider(
-                      thickness: 1,
-                      color: Theme.of(context).focusColor,
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    'create_divider_text'.i18n(),
-                    style: Theme.of(context).textTheme.headline6,
-                    textAlign: TextAlign.start,
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Expanded(
-                    child: Divider(
-                      thickness: 1,
-                      color: Theme.of(context).focusColor,
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            const ScanWidget(),
+            TitleWidget(title: 'create_divider_text'.i18n()),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
               child: TextField(
@@ -275,27 +197,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 300,
                   alignment: Alignment.center,
                   child: qrData == ''
-                      ? SizedBox(
-                          height: 250,
-                          width: 250,
-                          child: Center(
-                            child: Stack(
-                              alignment: Alignment.center,
-                              children: [
-                                const Icon(
-                                  Icons.qr_code_2,
-                                  color: Colors.black26,
-                                  size: 250,
-                                ),
-                                Text(
-                                  'no_qr_text'.i18n(),
-                                  style: Theme.of(context).textTheme.headline6,
-                                  textAlign: TextAlign.center,
-                                ),
-                              ],
-                            ),
-                          ),
-                        )
+                      ? const QrPlaceHolder()
                       : Stack(
                           alignment: Alignment.center,
                           children: [

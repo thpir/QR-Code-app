@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:localization/localization.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:barcode_parser/barcode_parser.dart';
 
 import './home_screen.dart';
 
