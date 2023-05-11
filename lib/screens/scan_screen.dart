@@ -31,7 +31,7 @@ class _ScanScreenState extends State<ScanScreen> {
           context,
           MaterialPageRoute(
             builder: (context) =>
-                ResultScreen(result: firstBarcode.rawValue.toString()),
+                ResultScreen(result: firstBarcode.rawValue.toString(), context: context,),
           )).then((_) => setState(() {
             _isPaused = false;
           }));

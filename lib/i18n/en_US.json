@@ -17,11 +17,15 @@
     "scan_button_text": "Scan QR-Code",
     "appbar_create_text": "Create QR-Code", 
     "appbar_scan_text": "QR-Code Scanner",
+    "appbar_result_text": "Scan Result",
     "appbar_history_text": "History",
     "textfield_url_text": "Enter your URL",
     "generate_qr_code_button_text": "GENERATE QR CODE",
     "no_qr_text": "Enter a link and tap the button to generate a QR-Code.",
     "confirm_message_saved": "QR-code saved successfully!",
     "no_scan_history_text": "You haven't scanned any QR-Codes yet...",
-    "no_created_history_text": "You haven't created any QR-Codes yet..."
+    "no_created_history_text": "You haven't created any QR-Codes yet...",
+    "button_text_open_url": "Open URL in browser",
+    "button_text_copy_text": "Copy text to clipboard",
+    "scaffold_message_copy_clipboard": "Text copied to clipboard"
 }
